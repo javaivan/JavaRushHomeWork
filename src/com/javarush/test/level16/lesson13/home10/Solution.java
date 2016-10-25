@@ -61,7 +61,7 @@ public class Solution {
         public String getFileContent() {
             return sb.toString();
         }
-        
+
         @Override
         public void run()
         {
