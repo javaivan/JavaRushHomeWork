@@ -1,5 +1,7 @@
 package com.javarush.test.level17.lesson10.home09;
 
+import java.io.*;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +22,36 @@ public class Solution {
     public static List<String> forRemoveLines = new ArrayList<String>();
 
     public static void main(String[] args) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            String fileOne = reader.readLine();
+            String fileTwo = reader.readLine();
+            reader.close();
+
+            readFile(fileOne, allLines);
+            readFile(fileTwo, forRemoveLines);
+
+            new Solution().joinData();
+        } catch (IOException e){
+            System.out.println(e);
+        }
     }
 
     public void joinData () throws CorruptedDataException {
+        if(allLines.containsAll(forRemoveLines)){
+            allLines.removeAll(forRemoveLines);
+        } else {
+            allLines.clear();
+            throw new CorruptedDataException();
+        }
+    }
 
+    public static void readFile(String fileName, List<String> list) throws IOException
+    {
+        BufferedReader in = new BufferedReader(new FileReader(fileName));
+        String line;
+        while ((line = in.readLine()) != null){
+            list.add(line);
+        }
     }
 }
