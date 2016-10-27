@@ -68,16 +68,22 @@ public class Solution {
 
         if (crudParam.equals("-d")){
             int id = Integer.parseInt(args[1]);
-            allPeople.remove(id);
+            Person person = allPeople.get(id);
+            person.setName(null);
+            person.setSex(null);
+            person.setBirthDay(null);
+            allPeople.set(id, person);
         }
 
         if (crudParam.equals("-i")){
             int id = Integer.parseInt(args[1]);
             Person person = allPeople.get(id);
+            String sex = null;
+            String birthDay = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH).format(person.getBirthDay());
+            if (person.getSex().equals(Sex.MALE))  sex = "м";
+            if (person.getSex().equals(Sex.FEMALE))  sex = "ж";
 
-            String birthDay = new SimpleDateFormat("dd/MMM/yyyy", Locale.ENGLISH).format(person.getBirthDay());
-
-            System.out.println(person.getName() + " " + person.getSex() + " " + birthDay);
+            System.out.println(person.getName() + " " + sex + " " + birthDay);
         }
     }
 }
