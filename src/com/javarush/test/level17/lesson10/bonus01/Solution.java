@@ -1,8 +1,11 @@
 package com.javarush.test.level17.lesson10.bonus01;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /* CRUD
 CrUD - Create, Update, Delete
@@ -34,7 +37,47 @@ public class Solution {
         allPeople.add(Person.createMale("Петров Петр", new Date()));  //сегодня родился    id=1
     }
 
-    public static void main(String[] args) {
-        //start here - начни тут
+    public static void main(String[] args) throws ParseException
+    {
+        String crudParam = args[0];
+        if(crudParam.equals("-c")){
+            Person person = null;
+            String sex = args[2];
+            String name = args[1];
+            Date birthDay = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(args[3]);
+
+            if (sex.equals("м")) person = Person.createMale(name, birthDay);
+            if (sex.equals("ж")) person = Person.createFemale(name, birthDay);
+
+            allPeople.add(person);
+            System.out.println(allPeople.indexOf(person));
+        }
+
+        if(crudParam.equals("-u")){
+            Person person = null;
+            int id = Integer.parseInt(args[1]);
+            String sex = args[3];
+            String name = args[2];
+            Date birthDay = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(args[4]);
+
+            if (sex.equals("м")) person = Person.createMale(name, birthDay);
+            if (sex.equals("ж")) person = Person.createFemale(name, birthDay);
+
+            allPeople.set(id, person);
+        }
+
+        if (crudParam.equals("-d")){
+            int id = Integer.parseInt(args[1]);
+            allPeople.remove(id);
+        }
+
+        if (crudParam.equals("-i")){
+            int id = Integer.parseInt(args[1]);
+            Person person = allPeople.get(id);
+
+            String birthDay = new SimpleDateFormat("dd/MMM/yyyy", Locale.ENGLISH).format(person.getBirthDay());
+
+            System.out.println(person.getName() + " " + person.getSex() + " " + birthDay);
+        }
     }
 }
