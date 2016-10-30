@@ -21,11 +21,18 @@ public class Solution {
         FileInputStream inputStream1 = new FileInputStream(file2);
         FileInputStream inputStream2 = new FileInputStream(file3);
 
-        if(inputStream1.available()>0 && inputStream2.available() >0){
-            byte[] buffer1 = new byte[inputStream1.available()];
-            byte[] buffer2 = new byte[inputStream2.available()];
-
+        while (inputStream1.available()>0) {
+            int data = inputStream1.read();
+            outputStream.write(data);
         }
 
+        while (inputStream2.available()>0){
+            int data = inputStream2.read();
+            outputStream.write(data);
+        }
+
+        outputStream.close();
+        inputStream1.close();
+        inputStream2.close();
     }
 }
