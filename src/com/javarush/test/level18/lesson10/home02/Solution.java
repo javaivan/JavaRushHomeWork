@@ -10,7 +10,6 @@ package com.javarush.test.level18.lesson10.home02;
 */
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Solution {
@@ -20,8 +19,8 @@ public class Solution {
         FileInputStream inputStream = new FileInputStream(fileName);
         byte[] buffer = new byte[inputStream.available()];
 
-
         if(inputStream.available()>0){
+            inputStream.read(buffer);
 
             int charCount = buffer.length;
             int spaceCount = 0;
@@ -29,8 +28,8 @@ public class Solution {
                 if(c == 32)
                     spaceCount++;
             }
-            double d = spaceCount/charCount*100;
-            System.out.println("" + d);
+            double d = ((double) spaceCount/(double) charCount)*100;
+            System.out.println(String.format("%.2f",d));
         }
         inputStream.close();
     }
