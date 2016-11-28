@@ -10,9 +10,12 @@ import java.io.IOException;
 Если передан не txt-файл, например, file.txt.exe, то конструктор должен выбрасывать исключение UnsupportedFileNameException
 */
 
-public class TxtInputStream{
-    /*public TxtInputStream(String fileName) {
-    }*/
-
+public class TxtInputStream extends FileInputStream {
+    public TxtInputStream(String fileName) throws FileNotFoundException, UnsupportedFileNameException {
+        super(fileName);
+        if(!fileName.endsWith(".txt")){
+            throw new UnsupportedFileNameException();
+        }
+    }
 }
 
