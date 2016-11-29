@@ -16,8 +16,44 @@ import java.util.Map;
 
 public class Solution {
     public static Map<String, String> countries = new HashMap<String, String>();
+    static {
+        countries.put("UA","Ukraine");
+        countries.put("RU","Russia");
+        countries.put("CA","Canada");
+    }
 
-    public static class IncomeDataAdapter {
+    public static class IncomeDataAdapter implements Customer, Contact {
+        private IncomeData incomeData;
+
+        public IncomeDataAdapter(IncomeData incomeData){
+            this.incomeData = incomeData;
+        }
+
+        @Override
+        public String getCompanyName() {
+            return incomeData.getCompany();
+        }
+
+        @Override
+        public String getCountryName() {
+            return countries.get(incomeData.getCountryCode());
+        }
+
+        @Override
+        public String getName() {
+            return incomeData.getContactLastName() + ", " + incomeData.getContactFirstName();
+        }
+
+        @Override
+        public String getPhoneNumber() {
+            String phone = String.valueOf(incomeData.getPhoneNumber());
+            if (phone.length() < 10) {
+                phone = String.format("%10s", phone).replace(' ', '0');
+            }
+            return "+"  + incomeData.getCountryPhoneCode()
+                    + "(" + phone.substring(0, 3) + ")"
+                    + phone.substring(3, 6) + "-" + phone.substring(6, 8) + "-" + phone.substring(8, 10);
+        }
     }
 
     public static interface IncomeData {
