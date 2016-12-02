@@ -8,10 +8,26 @@ package com.javarush.test.level19.lesson08.task01;
 Вывести модифицированную строку в консоль.
 */
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 public class Solution {
     public static TestString testString = new TestString();
 
     public static void main(String[] args) {
+        PrintStream consoleStream = System.out;
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream stream = new PrintStream(outputStream);
+        System.setOut(stream);
+
+        testString.printSomething();
+
+        System.setOut(consoleStream);
+        String result = outputStream.toString();
+        StringBuffer stringBuffer = new StringBuffer(result);
+        String stringResult = stringBuffer.toString().toUpperCase();
+
+        System.out.println(stringResult);
     }
 
     public static class TestString {
