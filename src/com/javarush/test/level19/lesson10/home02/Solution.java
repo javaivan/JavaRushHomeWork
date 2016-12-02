@@ -20,7 +20,38 @@ package com.javarush.test.level19.lesson10.home02;
 Петров
 */
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        String fileName = args[0];
+        BufferedReader fileReader = new BufferedReader(new FileReader(fileName));
+        String line;
+        HashMap<String, Double> map = new HashMap<>();
+        Double valueMax = 0D;
+        while ((line = fileReader.readLine()) != null) {
+            String[] split = line.split(" ");
+            String name = split[0];
+            Double value = Double.parseDouble(split[1]);
+            if(valueMax < value){
+                valueMax = value;
+            }
+            if(map.containsKey(name)){
+                map.put(name, map.get(name) + value);
+            } else {
+                map.put(name, value);
+            }
+        }
+        fileReader.close();
+
+        for (Map.Entry<String, Double> entry: map.entrySet()){
+            if(valueMax == entry.getValue()){
+                System.out.println(entry.getKey());
+            }
+        }
     }
 }
