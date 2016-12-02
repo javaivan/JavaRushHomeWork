@@ -56,10 +56,29 @@ public class Solution {
 
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            BufferedWriter fWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+            fWriter.write(name);
+            fWriter.newLine();
+            for (Asset asset : assets) {
+                fWriter.write(asset.getName());
+                fWriter.newLine();
+            }
+            fWriter.close();
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            BufferedReader fReader = new BufferedReader(new InputStreamReader(inputStream));
+            List<String> fileLines = new ArrayList<String>();
+            while (fReader.ready()) {
+                fileLines.add(fReader.readLine());
+            }
+            fReader.close();
+
+            this.name = fileLines.get(0);
+            for (int i = 1; i < fileLines.size(); i++) {
+                assets.add(new Asset(fileLines.get(i)));
+            }
         }
     }
 }
