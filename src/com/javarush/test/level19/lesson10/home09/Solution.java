@@ -18,10 +18,35 @@ JavaRush - курсы Java онлайн
 fifth
 */
 
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 public class Solution {
     public static TestString testString = new TestString();
 
     public static void main(String[] args) {
+        PrintStream consoleStream = System.out;
+        PrintStream advertisingStream = new AdvertisingPrintStream(System.out);
+        System.setOut(advertisingStream);
+        testString.printSomething();
+        System.setOut(consoleStream);
+    }
+
+    static class AdvertisingPrintStream extends PrintStream{
+        int count = 0;
+        public AdvertisingPrintStream(OutputStream out) {
+            super(out);
+        }
+
+        @Override
+        public void println(String s){
+            count++;
+            super.println(s);
+            if((count %2) == 0){
+                super.println("JavaRush - курсы Java онлайн");
+            }
+        }
+
     }
 
     public static class TestString {
