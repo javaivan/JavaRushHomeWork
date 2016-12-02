@@ -2,6 +2,7 @@ package com.javarush.test.level20.lesson02.task02;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /* Читаем и пишем в файл: JavaRush
@@ -43,11 +44,47 @@ public class Solution {
         public List<User> users = new ArrayList<>();
 
         public void save(OutputStream outputStream) throws Exception {
-            //implement this method - реализуйте этот метод
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+            for (User u: users){
+                bufferedWriter.write(u.getFirstName());
+                bufferedWriter.newLine();
+                bufferedWriter.write(u.getLastName());
+                bufferedWriter.newLine();
+                bufferedWriter.write(String.valueOf(u.getBirthDate().getTime()));
+                bufferedWriter.newLine();
+                bufferedWriter.write(String.valueOf(u.isMale()));
+                bufferedWriter.newLine();
+                bufferedWriter.write(String.valueOf(u.getCountry()));
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
         }
 
         public void load(InputStream inputStream) throws Exception {
-            //implement this method - реализуйте этот метод
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            ArrayList<String> us = new ArrayList<>();
+            while (bufferedReader.ready()){
+                us.add(bufferedReader.readLine());
+            }
+            for (int i = 0; i < us.size(); i +=5){
+                User user = new User();
+                user.setFirstName(us.get(i));
+                user.setLastName(us.get(i+1));
+                user.setBirthDate(new Date(Long.parseLong(us.get(i+2))));
+                user.setMale(Boolean.valueOf(us.get(i+3)));
+                String country = us.get(i+4);
+                User.Country country1 = null;
+                if (country.equals("UKRAINE")){
+                    country1 = User.Country.UKRAINE;
+                } else if (country.equals("RUSSIA")){
+                    country1 = User.Country.RUSSIA;
+                } else if (country.equals("OTHER")){
+                    country1 = User.Country.OTHER;
+                }
+                user.setCountry(country1);
+                users.add(user);
+            }
+            bufferedReader.close();
         }
     }
 }
