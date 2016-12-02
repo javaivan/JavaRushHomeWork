@@ -7,7 +7,27 @@ package com.javarush.test.level19.lesson10.home05;
 Закрыть потоки. Не использовать try-with-resources
 */
 
+import java.io.*;
+import java.util.regex.Pattern;
+
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        String fileOneName = args[0];
+        String fileTwoName = args[1];
+        Pattern pattern = Pattern.compile("\\d");
+
+        BufferedReader fileReader = new BufferedReader(new FileReader(fileOneName));
+        BufferedWriter fileWrite = new BufferedWriter(new FileWriter(fileTwoName));
+        String line;
+        while ((line = fileReader.readLine()) != null){
+            String[] split = line.split(" ");
+            for (String s: split){
+                if(pattern.matcher(s).find()){
+                    fileWrite.write(s + " ");
+                }
+            }
+        }
+        fileReader.close();
+        fileWrite.close();
     }
 }
