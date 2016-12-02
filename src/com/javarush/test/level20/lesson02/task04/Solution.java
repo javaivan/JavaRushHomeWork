@@ -49,10 +49,23 @@ public class Solution {
         public int j;
 
         public void save(OutputStream outputStream) throws Exception {
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+            bufferedWriter.write(staticString);
+            bufferedWriter.newLine();
+            bufferedWriter.write(String.valueOf(i));
+            bufferedWriter.newLine();
+            bufferedWriter.write(String.valueOf(j));
+            bufferedWriter.newLine();
+            bufferedWriter.close();
             //implement this method - реализуйте этот метод
         }
 
         public void load(InputStream inputStream) throws Exception {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            staticString = bufferedReader.readLine();
+            i = Integer.parseInt(bufferedReader.readLine());
+            j = Integer.parseInt(bufferedReader.readLine());
+            bufferedReader.close();
             //implement this method - реализуйте этот метод
         }
     }
