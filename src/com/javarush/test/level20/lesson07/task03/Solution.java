@@ -21,6 +21,9 @@ public class Solution {
         private Person father;
         private List<Person> children;
 
+        public Person() {
+        }
+
         public Person(String firstName, String lastName, int age) {
             this.firstName = firstName;
             this.lastName = lastName;
@@ -43,18 +46,18 @@ public class Solution {
         public void writeExternal(ObjectOutput out) throws IOException {
             out.writeObject(mother);
             out.writeObject(father);
-            out.writeChars(firstName);
-            out.writeChars(lastName);
+            out.writeObject(firstName);
+            out.writeObject(lastName);
             out.writeInt(age);
             out.writeObject(children);
         }
 
         @Override
         public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-            firstName = in.readLine();
-            lastName = in.readLine();
-            father = (Person)in.readObject();
             mother = (Person)in.readObject();
+            father = (Person)in.readObject();
+            firstName = (String)in.readObject();
+            lastName = (String)in.readObject();
             age = in.readInt();
             children = (List)in.readObject();
         }
