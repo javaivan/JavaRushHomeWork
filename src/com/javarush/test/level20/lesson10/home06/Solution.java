@@ -6,7 +6,14 @@ import java.io.*;
 Запретите сериализацию класса SubSolution используя NotSerializableException.
 Сигнатуры классов менять нельзя
 */
-public class Solution implements Serializable {
+public class Solution implements Serializable  {
     public static class SubSolution extends Solution {
+        private void writeObject(ObjectOutputStream out) throws IOException {
+            throw new NotSerializableException();
+        }
+
+        private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+            throw  new NotSerializableException();
+        }
     }
 }

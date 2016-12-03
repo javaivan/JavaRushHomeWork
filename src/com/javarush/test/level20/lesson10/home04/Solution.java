@@ -12,7 +12,7 @@ import java.util.Map;
 public class Solution implements Serializable {
 
     public static void main(String args[]) throws Exception {
-        FileOutputStream fileOutput = new FileOutputStream("your.file.name");
+        FileOutputStream fileOutput = new FileOutputStream("your.file.txt");
         ObjectOutputStream outputStream = new ObjectOutputStream(fileOutput);
 
         Solution solution = new Solution();
@@ -22,7 +22,7 @@ public class Solution implements Serializable {
         outputStream.close();
 
         //loading
-        FileInputStream fiStream = new FileInputStream("your.file.name");
+        FileInputStream fiStream = new FileInputStream("your.file.txt");
         ObjectInputStream objectStream = new ObjectInputStream(fiStream);
 
         Solution loadedObject = (Solution) objectStream.readObject();
@@ -40,7 +40,7 @@ public class Solution implements Serializable {
         return m;
     }
 
-    public void Solution() {
+    public Solution() {
         m.put("Mickey", "Mouse");
         m.put("Mickey", "Mantle");
     }

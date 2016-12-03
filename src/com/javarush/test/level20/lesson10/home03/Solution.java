@@ -1,5 +1,8 @@
 package com.javarush.test.level20.lesson10.home03;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /* Найти ошибки
@@ -16,12 +19,22 @@ public class Solution {
         public A(String name) {
             this.name += name;
         }
+
+        public A() {}
     }
 
     public class B extends A implements Serializable {
         public B(String name) {
             super(name);
             this.name += name;
+        }
+
+        private void writeObject(ObjectOutputStream out) throws IOException {
+            out.writeObject(name);
+        }
+
+        private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+            name = (String) in.readObject();
         }
     }
 }

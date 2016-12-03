@@ -6,7 +6,7 @@ package com.javarush.test.level23.lesson04.home01;
 2) реализуйте private class NameDataProvider используя String и DbMock, цель которого - обновить поле names.
 */
 public class Solution {
-
+/*
     private List<Task> tasks;
     private List<String> names;
 
@@ -28,5 +28,5 @@ public class Solution {
 
 
     class Task {
-    }
+    }*/
 }

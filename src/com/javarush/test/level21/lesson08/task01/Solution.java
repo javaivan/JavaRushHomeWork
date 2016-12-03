@@ -9,7 +9,7 @@ import java.util.Map;
 Метод main изменять нельзя.
 */
 public class Solution {
-
+/*
     public static void main(String[] args) {
         Solution solution = new Solution();
         solution.users.put("Hubert", new User(172, "Hubert"));
@@ -38,5 +38,5 @@ public class Solution {
             this.age = age;
             this.name = name;
         }
-    }
+    }*/
 }

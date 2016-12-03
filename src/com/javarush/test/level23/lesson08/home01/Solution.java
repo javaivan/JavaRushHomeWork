@@ -20,7 +20,7 @@ Id=1, name='Location-1', description=Got by executing 'select * from LOCATION'
 6. Классы не должны содержать закоментированного кода.
 */
 public class Solution {
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Solution solution = new Solution();
         print(solution.getUsers());
         print(solution.getLocations());
@@ -32,5 +32,5 @@ public class Solution {
             NamedItem item = (NamedItem) obj;
             System.out.println(String.format(format, item.getId(), item.getName(), item.getDescription()));
         }
-    }
+    }*/
 }
