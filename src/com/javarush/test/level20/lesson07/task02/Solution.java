@@ -42,6 +42,9 @@ public class Solution {
             i = in.readInt();
         }
 
+        public OutputToConsole() {
+        }
+
         /**
          * Class constructor specifying fake private field [i].
          */
@@ -54,7 +57,7 @@ public class Solution {
          * Has to use [charAt] method of String class
          */
         public void outputToConsole(int ii) {
-            for (int i = 0; i < greeting.length(); i++) {} {
+            for (int i = 0; i < greeting.length(); i++) {
                 System.out.write(greeting.charAt(i));
             }
         }
