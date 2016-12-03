@@ -1,5 +1,6 @@
 package com.javarush.test.level20.lesson07.task04;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,14 +18,14 @@ import java.util.Date;
 6) проверить, что savedObject.string равна loadedObject.string
 7) обработать исключения
 */
-public class Solution {
+public class Solution implements Serializable {
     public static void main(String[] args) {
         System.out.println(new Solution(4));
     }
 
-    private final String pattern = "dd MMMM yyyy, EEEE";
-    private Date currentDate;
-    private int temperature;
+    transient private final String pattern = "dd MMMM yyyy, EEEE";
+    transient private Date currentDate;
+    transient private int temperature;
     String string;
 
     public Solution(int temperature) {
