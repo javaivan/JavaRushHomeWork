@@ -40,6 +40,14 @@ public class Solution {
     }
 
     public String getPartOfString(String string, String threadName) {
-        return null;
+        int begin = string.indexOf('\t');
+        int end = string.lastIndexOf('\t');
+        if (begin == -1 || end == -1 || begin == end)
+            switch (threadName) {
+                case "1#": throw new TooShortStringFirstThreadException(new StringIndexOutOfBoundsException(-1));
+                case "2#": throw new TooShortStringSecondThreadException(new StringIndexOutOfBoundsException(-1));
+                default: throw new RuntimeException(new StringIndexOutOfBoundsException(-1));
+            }
+        return string.substring(begin + 1, end);
     }
 }

@@ -11,9 +11,27 @@ package com.javarush.test.level22.lesson05.task01;
 */
 public class Solution {
     public static String getPartOfString(String string) {
-        return null;
+        if (string == null)
+            throw new TooShortStringException();
+
+        int startIdx = string.indexOf(' ');
+        if (startIdx < 0) throw new TooShortStringException();
+        int endIdx = string.indexOf(' ');
+        endIdx = string.indexOf(' ', endIdx  + 1);
+        if (endIdx < 0)  throw new TooShortStringException();
+        endIdx = string.indexOf(' ', endIdx  + 1);
+        if (endIdx < 0)  throw new TooShortStringException();
+        endIdx = string.indexOf(' ', endIdx + 1);
+        if (endIdx < 0)  throw new TooShortStringException();
+        endIdx = string.indexOf(' ', endIdx + 1);
+        if (endIdx < 0)  throw new TooShortStringException();
+
+        return string.substring(startIdx + 1, endIdx);
     }
 
-    public static class TooShortStringException {
+    public static class TooShortStringException extends RuntimeException {
+        public TooShortStringException() {
+            super();
+        }
     }
 }

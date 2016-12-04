@@ -6,8 +6,14 @@ package com.javarush.test.level22.lesson05.task02;
 Класс TooShortStringException не менять.
 */
 public class Solution {
-    public static String getPartOfString(String string) {
-        return null;
+    public static String getPartOfString(String string) throws TooShortStringException {
+        if (string == null || string.isEmpty())
+            throw new TooShortStringException();
+        int begin = string.indexOf('\t');
+        int end = string.indexOf('\t', begin + 1);
+        if (begin == -1 || end == -1 || begin == end )
+            throw new TooShortStringException();
+        return string.substring(begin + 1, end);
     }
 
     public static class TooShortStringException extends Exception {
