@@ -1,10 +1,13 @@
 package com.javarush.test.level21.lesson02.task02;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+
 /* Сравниваем модификаторы
 Реализовать логику метода isAllModifiersContainSpecificModifier, который проверяет,
 содержит ли переданный параметр allModifiers значение конкретного модификатора specificModifier
 */
-public class Solution {/*
+public class Solution {
     public static void main(String[] args) {
         int modifiersOfThisClass = Solution.class.getModifiers();
         System.out.println(isAllModifiersContainSpecificModifier(modifiersOfThisClass, Modifier.PUBLIC));   //true
@@ -15,7 +18,7 @@ public class Solution {/*
     }
 
     public static boolean isAllModifiersContainSpecificModifier(int allModifiers, int specificModifier) {
-        return false;
+        return (allModifiers & specificModifier) == specificModifier;
     }
 
     private static Method getMainMethod() {
@@ -25,5 +28,5 @@ public class Solution {/*
         }
 
         return null;
-    }*/
+    }
 }
