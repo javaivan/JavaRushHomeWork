@@ -8,8 +8,8 @@ import java.util.Map;
 Данные в карте users также должны клонироваться.
 Метод main изменять нельзя.
 */
-public class Solution {
-/*
+public class Solution implements Cloneable{
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         solution.users.put("Hubert", new User(172, "Hubert"));
@@ -30,7 +30,7 @@ public class Solution {
 
     protected Map<String, User> users = new LinkedHashMap();
 
-    public static class User {
+    public static class User implements Cloneable{
         int age;
         String name;
 
@@ -38,5 +38,22 @@ public class Solution {
             this.age = age;
             this.name = name;
         }
-    }*/
+
+        public User clone() throws CloneNotSupportedException {
+            return (User) super.clone();
+        }
+    }
+
+    @Override
+    protected Solution clone() throws CloneNotSupportedException {
+        Map<String, User> clonedUsers = new LinkedHashMap();
+        for (Map.Entry<String, User> pairs : users.entrySet()) {
+            clonedUsers.put(pairs.getKey(), pairs.getValue().clone());
+        }
+        Solution clonedSolution = new Solution();
+        clonedSolution.users = clonedUsers;
+        return clonedSolution;
+    }
+
+
 }
