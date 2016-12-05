@@ -1,5 +1,6 @@
 package com.javarush.test.level22.lesson09.task02;
 
+
 import java.util.Map;
 
 /* Формируем Where
@@ -13,6 +14,16 @@ import java.util.Map;
 public class Solution {
 
     public static StringBuilder getCondition(Map<String, String> params) {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, String> param : params.entrySet()) {
+            if (param.getValue() != null) {
+                sb.append(param.getKey()).append(" = '").append(param.getValue()).append("' and ");
+            }
+        }
+        // remove last " and " substring
+        if (sb.length() > 0) {
+            sb.replace(sb.length() - 5, sb.length(), "");
+        }
+        return sb;
     }
 }
