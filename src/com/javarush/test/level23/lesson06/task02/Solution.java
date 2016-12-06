@@ -8,41 +8,48 @@ public class Solution {
 
     public class ServerNotAccessibleException extends Exception {
         public ServerNotAccessibleException() {
-            super("Server is not accessible for now.");
+            super(Constants.SERVER_NOT_ACCESSIBLE);
         }
 
         public ServerNotAccessibleException(Throwable cause) {
-            super("Server is not accessible for now.", cause);
+            super(Constants.SERVER_NOT_ACCESSIBLE, cause);
         }
     }
 
     public class UnauthorizedUserException extends Exception {
         public UnauthorizedUserException() {
-            super("User is not authorized.");
+            super(Constants.UNAUTHORIZED_USER);
         }
 
         public UnauthorizedUserException(Throwable cause) {
-            super("User is not authorized.", cause);
+            super(Constants.UNAUTHORIZED_USER, cause);
         }
     }
 
     public class BannedUserException extends Exception {
         public BannedUserException() {
-            super("User is banned.");
+            super(Constants.BANNED_USER);
         }
 
         public BannedUserException(Throwable cause) {
-            super("User is banned.", cause);
+            super(Constants.BANNED_USER, cause);
         }
     }
 
     public class RestrictionException extends Exception {
         public RestrictionException() {
-            super("Access is denied.");
+            super(Constants.RESTRICTION);
         }
 
         public RestrictionException(Throwable cause) {
-            super("Access is denied.", cause);
+            super(Constants.RESTRICTION, cause);
         }
+    }
+
+    public static final class Constants {
+        public static final String SERVER_NOT_ACCESSIBLE = "Server is not accessible for now.";
+        public static final String UNAUTHORIZED_USER = "User is not authorized.";
+        public static final String BANNED_USER = "User is banned.";
+        public static final String RESTRICTION = "Access is denied.";
     }
 }
