@@ -1,5 +1,7 @@
 package com.javarush.test.level24.lesson06.home01;
 
+import java.io.BufferedReader;
+
 /*
 В работе вам иногда будет нужно закастить класс к какому-нибудь интерфейсу (тут Sayable),
 который не реализован в текущем классе
@@ -29,6 +31,20 @@ public class Cat implements Pet {
      * @return экземпляр класса CatPet
      */
     public Sayable toSayable(final int i) {
-        return null;
+        class CatPet implements Sayable{
+            @Override
+            public String say() {
+                if (i <= 0) {
+                    return  name + " спит.";
+                } else {
+                    StringBuilder sb = new StringBuilder();
+                    for (int j = 0; j < i; j++) {
+                        sb.append("я");
+                    }
+                    return name + " говорит м" + sb.toString() + "у!";
+                }
+            }
+        }
+        return new CatPet();
     }
 }

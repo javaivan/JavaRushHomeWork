@@ -1,5 +1,7 @@
 package com.javarush.test.level24.lesson06.home03;
 
+import java.util.List;
+
 /* Интернет-магазин продажи джинсов
 1.Внутри файла Solution.java, но НЕ внутри класса Solution создайте 2 интерфейса:
 1.1) Item с методами int getId(), double getPrice(), String getTM()
@@ -12,7 +14,7 @@ package com.javarush.test.level24.lesson06.home03;
 2.5) метод toString класса AbstractJeans должен начинаться с имени сабкласса, например, Levis{id=1, length=34, size=6, price=150.0}
 */
 public class Solution {
-/*
+
     public static List<Jeans> allJeans = Util.getAllJeans();
 
     public static void main(String[] args) {
@@ -20,5 +22,17 @@ public class Solution {
             System.out.println(jeans);
         }
     }
-*/
+
+}
+
+interface Item {
+    int getId();
+    double getPrice();
+    String getTM();
+}
+
+
+interface Jeans extends Item {
+    int getLength();
+    int getSize();
 }
