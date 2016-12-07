@@ -19,4 +19,16 @@ public class Solution {
         public class Apartments {
         }
     }
+
+    public class Apt3Bedroom extends Building.Apartments{
+        Apt3Bedroom(Building building){
+            building.super();
+        }
+    }
+
+    public class BigHall extends Building.Hall{
+        BigHall(Building building, BigDecimal square){
+            building.super(square);
+        }
+    }
 }
