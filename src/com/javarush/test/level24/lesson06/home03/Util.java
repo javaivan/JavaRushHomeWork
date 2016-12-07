@@ -12,7 +12,7 @@ public class Util {
         jeansArray.add(new Object[]{3, Company.Colins, 32, 6, 120.0});
         jeansArray.add(new Object[]{4, Company.CalvinKleinJeans, 31, 8, 125.0});
     }
-
+/*
     public static List<Jeans> getAllJeans() {
 
         //add your code here
@@ -42,7 +42,7 @@ public class Util {
             allJeans.add(jeans);
         }
         return allJeans;
-    }
+    }*/
 
     public static Collection<Object[]> getJeansArray() {
         return jeansArray;

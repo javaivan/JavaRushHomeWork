@@ -41,9 +41,9 @@ interface JustAnInterface {
 }
 
 class C {
-    public C() {
+    public C() {/*
         System.out.print("C");
-        B localB = B;
+        B localB = B;*/
     }
 }
 
