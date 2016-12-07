@@ -18,7 +18,7 @@ public class Solution {
      * Bank Name
      */
     public static void main(String[] args) {
-/*
+
         Column.configureColumns(Column.Amount, Column.AccountNumber, Column.BankName);
 
         for (Columnable columnable : Column.getVisibleColumns()) {
@@ -30,6 +30,6 @@ public class Solution {
 
         for (Columnable columnable : Column.getVisibleColumns()) {
             System.out.println(columnable.getColumnName());
-        }*/
+        }
     }
 }

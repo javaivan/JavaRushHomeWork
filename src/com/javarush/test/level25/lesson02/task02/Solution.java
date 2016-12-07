@@ -1,9 +1,6 @@
 package com.javarush.test.level25.lesson02.task02;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /* Машину на СТО не повезем!
 Инициализируйте поле wheels используя данные из loadWheelNamesFromDB.
@@ -23,7 +20,11 @@ public class Solution {
         protected List<Wheel> wheels;
 
         public Car() {
-            //init wheels here
+            wheels = new ArrayList<>();
+            for (String s: loadWheelNamesFromDB()){
+                Wheel wheel = Wheel.valueOf(s);
+                wheels.add(wheel);
+            }
         }
 
         protected String[] loadWheelNamesFromDB() {
