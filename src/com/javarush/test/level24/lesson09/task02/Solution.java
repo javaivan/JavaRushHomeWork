@@ -32,7 +32,7 @@ public class Solution {
         String[] filepart = {"closed {4}", "open {2} and last {3}"};
 
         ChoiceFormat fileform = new ChoiceFormat(filelimits, filepart);
-        Format[] testFormats = {null, dateFormat, fileform};
+        Format[] testFormats = {null, null, dateFormat, fileform};
         MessageFormat pattform = new MessageFormat("{0}   {1} | {5} {6}");
         pattform.setFormats(testFormats);
 
@@ -51,7 +51,34 @@ public class Solution {
     public static void sort(List<Stock> list) {
         Collections.sort(list, new Comparator<Stock>() {
             public int compare(Stock stock1, Stock stock2) {
+                int result = 0;
+                String name1 = (String) stock1.get("name");
+                String name2 = (String) stock2.get("name");
+                result = name1.compareTo(name2);
+                if (result != 0) return result;
+
+                Date date1 = (Date) stock1.get("date");
+                Date date2 = (Date) stock2.get("date");
+
+                result = ((Integer) date2.getYear()).compareTo(date1.getYear());
+                if (result != 0) return result;
+                result = ((Integer) date2.getMonth()).compareTo(date1.getMonth());
+                if (result != 0) return result;
+                result = ((Integer) date2.getDay()).compareTo(date1.getDay());
+                if (result != 0) return result;
+
+                if (stock1.get("open") != null && stock1.get("last") != null && stock2.get("open") != null && stock2.get("last") != null) {
+                    double open1 = (double) stock1.get("open");
+                    double last1 = (double) stock1.get("last");
+                    double open2 = (double) stock2.get("open");
+                    double last2 = (double) stock2.get("last");
+
+                    Double change1 = last1 - open1;
+                    Double change2 = last2 - open2;
+                    return change2.compareTo(change1);
+                }
                 return 0;
+
             }
         });
     }
@@ -106,4 +133,3 @@ public class Solution {
         return calendar.getTime();
     }
 }
-
