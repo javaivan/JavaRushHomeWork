@@ -30,14 +30,14 @@ public class Solution {
         //////////////second example///////////////////
         Copyright copyright = new Copyright();
         CacheComputeManager manager2 = new CacheComputeManager(copyright);
-        System.out.println(manager2.compute(new Copyright.Period(3012, 3147)));
-        System.out.println(manager2.compute(new Copyright.Period(3012, 3146)));
-        System.out.println(manager2.compute(new Copyright.Period(3012, 3147)));
+        System.out.println(manager2.compute(new Copyright.Period(2012, 2014)));
+        System.out.println(manager2.compute(new Copyright.Period(2012, 2013)));
+        System.out.println(manager2.compute(new Copyright.Period(2012, 2014)));
 
         /* output
-        Period{firstYear=3012, secondYear=3147} will be cached  All rights reserved (c) 3012-3147
-        Period{firstYear=3012, secondYear=3146} will be cached  All rights reserved (c) 3012-3146
-        Period{firstYear=3012, secondYear=3147} taken from cache  All rights reserved (c) 3012-3147
+        Period{firstYear=2012, secondYear=2014} will be cached  All rights reserved (c) 2012-2014
+        Period{firstYear=2012, secondYear=2013} will be cached  All rights reserved (c) 2012-2013
+        Period{firstYear=2012, secondYear=2014} taken from cache  All rights reserved (c) 2012-2014
          */
     }
 }

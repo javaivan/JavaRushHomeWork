@@ -29,6 +29,7 @@ public class Solution {
             @Override
             public void run() {
                 emulateThreadFactory();
+
             }
         }
 
@@ -53,5 +54,22 @@ public class Solution {
         factory.newThread(r).start();
         factory.newThread(r).start();
         factory.newThread(r).start();
+    }
+
+    public static class AmigoThreadFactory implements ThreadFactory {
+        private static AtomicInteger factoryCount = new AtomicInteger(0);
+        private AtomicInteger factoryNum = new AtomicInteger(0);
+        private AtomicInteger threadNum = new AtomicInteger(0);
+
+        public AmigoThreadFactory() {
+            factoryNum.set(factoryCount.incrementAndGet());
+        }
+
+        @Override
+        public Thread newThread(Runnable r) {
+            Thread thread = new Thread(r);
+            thread.setName(thread.getThreadGroup().getName() + "-pool-" + factoryNum + "-thread-" + threadNum.incrementAndGet());
+            return thread;
+        }
     }
 }

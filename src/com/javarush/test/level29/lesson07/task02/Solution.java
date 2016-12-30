@@ -16,6 +16,14 @@ public class Solution {
     }
 
     public static Integer getValue(boolean first, boolean second) {
-        return first ? 100 : second ? 200 : null;
+        if (first) {
+            return 100;
+        } else {
+            if (second) {
+                return 200;
+            } else {
+                return null;
+            }
+        }
     }
 }

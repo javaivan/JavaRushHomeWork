@@ -34,5 +34,16 @@ public class Solution {
 
     public static void switchTest(Enum obj) {
         //add your code here
+        final String e1 = E1.class.toString();
+        switch (obj.getClass().getSimpleName()) {
+            case "E1":
+                System.out.println("it's E1." + obj);
+                break;
+            case "E2":
+                System.out.println("it's E2." + obj);
+                break;
+            default:
+                System.out.println("undefined");
+        }
     }
 }

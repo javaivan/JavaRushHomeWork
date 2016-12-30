@@ -1,5 +1,6 @@
 package com.javarush.test.level28.lesson08.task01;
 
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -13,8 +14,23 @@ import java.util.concurrent.TimeUnit;
 Не должно быть комментариев кроме приведенного output example
 */
 public class Solution {
+    private static volatile int id = 1;
+
     public static void main(String[] args) throws InterruptedException {
         //Add your code here
+
+        ExecutorService executor = Executors.newFixedThreadPool(5);
+        for (int i = 0; i < 10; i++) {
+            executor.submit(new Runnable() {
+                @Override
+                public void run() {
+                    doExpensiveOperation(id++);
+                }
+            });
+        }
+        executor.shutdown();
+        executor.awaitTermination(5, TimeUnit.SECONDS);
+
 
         /* output example
 pool-1-thread-2, localId=2

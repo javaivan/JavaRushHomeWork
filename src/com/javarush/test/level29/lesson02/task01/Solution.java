@@ -16,33 +16,32 @@ import java.util.List;
 Переименуйте имя класса во вспомогательное имя, а мотом в это же в правильном регистре.
 */
 public class Solution {
-    public static final String defaultFileName = "C:/tmp/file_strange_name.tmp";
-
+    public static final String DEFAULT_FILE_NAME = "C:/tmp/file_strange_name.tmp";
     private final String localFileName;
-    private List<String> contentAslines;
+    private List<String> contentAsLines;
     private boolean fileLoaded;
 
     public Solution(String firstFileName) {
-        localFileName = firstFileName == null ? defaultFileName : firstFileName;
+        localFileName = firstFileName == null ? DEFAULT_FILE_NAME : firstFileName;
     }
 
-    public boolean getFileLoaded() {
+    public boolean isFileLoaded() {
         return fileLoaded;
     }
 
-    public void DownloadFileContent() {
+    public void downloadFileContent() {
         Path source = Paths.get(localFileName);
 
         try {
-            contentAslines = Files.readAllLines(source, Charset.defaultCharset());
+            contentAsLines = Files.readAllLines(source, Charset.defaultCharset());
             fileLoaded = true;
         } catch (IOException e) {
             System.out.println("Unsuccessful. What a surprise!");
         }
     }
 
-    public boolean isfileexpectedline(String expectedline) {
-        return contentAslines.contains(expectedline);
+    public boolean hasFileExpectedLine(String expectedLine) {
+        return contentAsLines.contains(expectedLine);
     }
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -50,10 +49,10 @@ public class Solution {
         String fileName = "src\\" + packageName + "\\Solution.java";
 
         Solution solution = new Solution(fileName);
-        solution.DownloadFileContent();
-        if (solution.getFileLoaded()) {
-            System.out.println(solution.isfileexpectedline("public class Solution {"));   //expected true
-            System.out.println(solution.isfileexpectedline(" public class Solution {"));  //expected false
+        solution.downloadFileContent();
+        if (solution.isFileLoaded()) {
+            System.out.println(solution.hasFileExpectedLine("public class Solution {"));
+            System.out.println(solution.hasFileExpectedLine(" public class Solution {"));
         }
     }
 }
