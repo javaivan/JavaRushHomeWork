@@ -29,4 +29,36 @@ public class ShareItem {
     public int getItemId() {
         return itemId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        ShareItem shareItem = (ShareItem) o;
+
+        if (itemId != shareItem.itemId)
+            return false;
+        if (description != null ? !description.equals(shareItem.description) : shareItem.description != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = description != null ? description.hashCode() : 0;
+        result = 31 * result + itemId;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ShareItem{" +
+                "description='" + description + '\'' +
+                ", itemId=" + itemId +
+                '}';
+    }
 }

@@ -14,6 +14,14 @@ public class Solution {
     }
 
     public static String convertToDecimalSystem(String s) {
-        return s;
+        if (s.startsWith("0x")) {
+            return String.valueOf(Integer.parseInt(s.substring(2, s.length()), 16));
+        } else if (s.startsWith("0b")) {
+            return String.valueOf(Integer.parseInt(s.substring(2, s.length()), 2));
+        } else if (s.startsWith("0")) {
+            return String.valueOf(Integer.parseInt(s.substring(1, s.length()), 8));
+        } else {
+            return s;
+        }
     }
 }

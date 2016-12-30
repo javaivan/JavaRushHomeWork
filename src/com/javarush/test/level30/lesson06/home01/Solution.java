@@ -1,5 +1,7 @@
 package com.javarush.test.level30.lesson06.home01;
 
+import java.util.concurrent.ForkJoinPool;
+
 /* Fork/Join
 1. Создайте класс BinaryRepresentationTask. Для этого на красном имени класса нажмите Alt+Enter -> Create Class ...
 (класс должен наследоваться от RecursiveTask)
@@ -8,26 +10,25 @@ package com.javarush.test.level30.lesson06.home01;
 4. Пример функциональной реализации - метод binaryRepresentationMethod.
 */
 public class Solution {
-    private String binaryRepresentationMethod(int x) {
+
+    private String binatyRepresentationMethod(int x) {
         int a = x % 2;
         int b = x / 2;
         String result = String.valueOf(a);
         if (b > 0) {
-            return binaryRepresentationMethod(b) + result;
+            return binatyRepresentationMethod(b) + result;
         }
         return result;
     }
 
-
     public static void main(String[] args) {
         Solution solution = new Solution();
-        String result1 = solution.binaryRepresentationMethod(6);
+        String result1 = solution.binatyRepresentationMethod(116);
         System.out.println(result1);
 
         System.out.println();
         ForkJoinPool forkJoinPool = new ForkJoinPool();
-        String result2 = forkJoinPool.invoke(new BinaryRepresentationTask(6));
+        String result2 = (String)forkJoinPool.invoke(new BinaryRepresentationTask(116));
         System.out.println(result2);
     }
-
 }
