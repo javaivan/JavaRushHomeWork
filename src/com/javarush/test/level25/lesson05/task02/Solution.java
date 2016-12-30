@@ -20,15 +20,24 @@ public class Solution {
 
         public MyThread(String secretKey) {
             this.secretKey = secretKey;
-            //setUncaughtExceptionHandler(new MyUncaughtExceptionHandler());
-            setDaemon(true);
+            setUncaughtExceptionHandler(new MyUncaughtExceptionHandler());
         }
 
         @Override
         public void run() {
             throw new NullPointerException("it's an example");
         }
-    }
 
+        private class MyUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                try {
+                    Thread.sleep(500);
+                }
+                catch (InterruptedException e1) {}
+                System.out.println(String.format("%s, %s, %s", secretKey, t.getName(), e.getMessage()));
+            }
+        }
+    }
 }
 

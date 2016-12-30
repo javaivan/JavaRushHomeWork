@@ -4,7 +4,7 @@ package com.javarush.test.level27.lesson04.home01;
 Расставьте модификаторы так, чтобы при работе с этим кодом появился дедлок
 */
 public class Solution {
-    public Object getData() {
+    public synchronized Object getData() {
         return new ThreadDeadlock().getData();
     }
 }

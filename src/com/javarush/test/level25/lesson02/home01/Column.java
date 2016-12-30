@@ -2,8 +2,7 @@ package com.javarush.test.level25.lesson02.home01;
 
 import java.util.*;
 
-public enum Column implements Columnable
-{
+public enum Column implements Columnable {
     Customer("Customer"),
     BankName("Bank Name"),
     AccountNumber("Account Number"),
@@ -77,3 +76,4 @@ public enum Column implements Columnable
         realOrder[ordinal()] = -1;
     }
 }
+

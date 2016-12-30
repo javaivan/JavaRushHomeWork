@@ -20,16 +20,26 @@ public class Solution {
         protected List<Wheel> wheels;
 
         public Car() {
+            //init wheels here
             wheels = new ArrayList<>();
-            for (String s: loadWheelNamesFromDB()){
-                Wheel wheel = Wheel.valueOf(s);
-                wheels.add(wheel);
+            for (String s : loadWheelNamesFromDB()) {
+                try {
+                    Wheel wheel = Wheel.valueOf(s);
+                    wheels.add(wheel);
+                }
+                catch (IllegalArgumentException e) {
+
+                }
             }
         }
 
         protected String[] loadWheelNamesFromDB() {
             //this method returns mock data
-            return new String[]{"FRONT_LEFT", "FRONT_RIGHT", "BACK_LEFT", "BACK_RIGHT"};
+            return new String[]{"FRONT_LEFT", "FRONT_RIGHT", "BACK_LEFT", "BACK_RIGHT", "asd"};
         }
+    }
+
+    public static void main(String[] args) {
+        new Car();
     }
 }

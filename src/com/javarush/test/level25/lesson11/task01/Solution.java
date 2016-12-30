@@ -3,9 +3,8 @@ package com.javarush.test.level25.lesson11.task01;
 import java.util.Random;
 
 /* Обеспечение отсутствия прерывания важной операции
-Просмотрите метод moveMoney
 Если RANDOM.nextInt(5000) больше порогового значения THRESHOLD_VALUE,
-то обеспечьте переуступку кванта времени (переход хода для текущей нити)
+то обеспечьте переуступку кванта времени.
 Добавьте этот код в единственное допустимое место.
 */
 public class Solution {
@@ -14,6 +13,9 @@ public class Solution {
 
     public synchronized void moveMoney(Account from, Account to, int amount) {
         from.setBalance(from.getBalance() - amount);
+        if (RANDOM.nextInt(5000) > THRESHOLD_VALUE) {
+            Thread.yield();
+        }
         to.setBalance(to.getBalance() + amount);
     }
 
