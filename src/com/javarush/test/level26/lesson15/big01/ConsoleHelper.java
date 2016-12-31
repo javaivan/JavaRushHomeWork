@@ -1,31 +1,26 @@
 package com.javarush.test.level26.lesson15.big01;
 
+
 import com.javarush.test.level26.lesson15.big01.exception.InterruptOperationException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ConsoleHelper {
+
     private static ResourceBundle res = ResourceBundle.getBundle(CashMachine.RESOURCE_PATH + "common_en");
 
-    static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void writeMessage(String message)
-    {
+    public static void writeMessage(String message) {
         System.out.println(message);
     }
 
-    public static void printExitMessage()
-    {
-        ConsoleHelper.writeMessage(res.getString("the.end"));
-    }
 
-    public static String readString() throws InterruptOperationException
-    {
+    public static String readString() throws InterruptOperationException {
+
         String message = "";
         try
         {
@@ -39,27 +34,31 @@ public class ConsoleHelper {
         return message;
     }
 
-    public static String askCurrencyCode() throws InterruptOperationException
-    {
-        String test;
-        writeMessage(res.getString("choose.currency.code"));
-        while (true)
-        {
-            test = readString();
-            if (test.length() == 3)
-                break;
-            else
+
+    public static String askCurrencyCode() throws InterruptOperationException {
+
+        String s;
+        while (true) {
+            writeMessage(res.getString("choose.currency.code"));
+            s = readString();
+            if (s.length() != 3) {
                 writeMessage(res.getString("invalid.data"));
+            }
+            else {
+                s = s.toUpperCase();
+                break;
+
+            }
 
         }
-        test = test.toUpperCase();
-        return test;
+        return s;
     }
 
-    public static String[] getValidTwoDigits(String currencyCode) throws InterruptOperationException
-    {
+
+    public static String[] getValidTwoDigits(String currencyCode) throws InterruptOperationException {
+
         String[] array;
-        writeMessage(String.format(res.getString("choose.denomination.and.count.format"), currencyCode));
+        writeMessage(res.getString("choose.denomination.and.count.format"));
 
         while (true)
         {
@@ -87,22 +86,22 @@ public class ConsoleHelper {
         return array;
     }
 
-    public static Operation askOperation() throws InterruptOperationException
-    {
-        while (true) {
+
+    public static Operation askOperation() throws InterruptOperationException {
+
+        while (true)
+        {
             String line = readString();
-            if (checkWithRegExp(line))
+            if (Integer.parseInt(line) > 0 && Integer.parseInt(line) < 5)
                 return Operation.getAllowableOperationByOrdinal(Integer.parseInt(line));
             else
                 writeMessage(res.getString("invalid.data"));
         }
-
     }
 
-    public static boolean checkWithRegExp(String name) {
-        Pattern p = Pattern.compile("^[1-4]$");
-        Matcher m = p.matcher(name);
-        return m.matches();
-    }
 
+    public static void printExitMessage() {
+
+        ConsoleHelper.writeMessage(res.getString("the.end"));
+    }
 }

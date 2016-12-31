@@ -1,6 +1,5 @@
 package com.javarush.test.level31.lesson04.home02;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -20,7 +19,7 @@ public class Solution extends SimpleFileVisitor<Path> {
     public static void main(String[] args) throws IOException {
         EnumSet<FileVisitOption> options = EnumSet.of(FileVisitOption.FOLLOW_LINKS);
         final Solution solution = new Solution();
-        Files.walkFileTree(Paths.get("D:/"), options, 20, solution);
+        Files.walkFileTree(Paths.get("C:/Users/makalex/Downloads"), options, 20, solution);
 
         List<String> result = solution.getArchived();
         System.out.println("All archived files:");
@@ -44,5 +43,21 @@ public class Solution extends SimpleFileVisitor<Path> {
 
     public List<String> getFailed() {
         return failed;
+    }
+
+    @Override
+    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+        //Files.lis
+        String fileName = file.getFileName().toString();
+        if (fileName.endsWith(".zip") || fileName.endsWith(".rar")) {
+            archived.add(file.toString());
+        }
+        return super.visitFile(file, attrs);
+    }
+
+    @Override
+    public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+        failed.add(file.toString());
+        return FileVisitResult.SKIP_SUBTREE;
     }
 }

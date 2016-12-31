@@ -1,6 +1,7 @@
 package com.javarush.test.level31.lesson08.home01;
 
-public class NullFileData implements FileData {
+public class NullFileData implements FileData
+{
     private Exception exception;
 
     public NullFileData(Exception e) {

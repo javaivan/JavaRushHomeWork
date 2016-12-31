@@ -1,5 +1,6 @@
 package com.javarush.test.level26.lesson15.big01.command;
 
+
 import com.javarush.test.level26.lesson15.big01.CashMachine;
 import com.javarush.test.level26.lesson15.big01.ConsoleHelper;
 import com.javarush.test.level26.lesson15.big01.exception.InterruptOperationException;
@@ -11,12 +12,11 @@ class ExitCommand implements Command {
     private ResourceBundle res = ResourceBundle.getBundle(CashMachine.RESOURCE_PATH + "exit_en");
 
     @Override
-    public void execute() throws InterruptOperationException
-    {
+    public void execute() throws InterruptOperationException {
         ConsoleHelper.writeMessage(res.getString("exit.question.y.n"));
-
-        if (ConsoleHelper.readString().equals(res.getString("yes"))) {
+        if (ConsoleHelper.readString().equals("yes"))
             ConsoleHelper.writeMessage(res.getString("thank.message"));
-        }
     }
+
+
 }
